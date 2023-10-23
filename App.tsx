@@ -10,7 +10,7 @@ import { Ozow } from "react-native-ozow";
 export default function App() {
   //const [link, setLink] = useState("");
 
-  //const myLink = new PaymentLink("");
+  //const myLink = new PaymentLink("9219958c9f524a3da49fe518abb0de0b");
 
   return (
     <>
@@ -60,7 +60,7 @@ export default function App() {
           IsTest: true,
           Customer: "John Doe",
         }}
-        privateKey=""
+        privateKey="f276b028558946308361979e4bf88ffa"
         onErrorMessage={(error) => {
           console.log("Payment Error: ",
             // error.description
