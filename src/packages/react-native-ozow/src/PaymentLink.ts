@@ -3,6 +3,14 @@ import axios from "axios";
 import { generateLinkHash } from "./utils/hashers"
 import { OzowLinkResponse, OzowPaymentData } from "./utils/interfaces";
 
+/**
+ * Class for generating payment links for Ozow.
+ * 
+ * @param1  API Key
+ * @param2  Private Key
+ * 
+ * @see https://hub.ozow.com/docs/step-post-from-merchant-website#generate-payment-url-using-api
+*/
 class PaymentLink {
     private paymentLink: string | null;
     private ApiKey: string;
@@ -17,10 +25,25 @@ class PaymentLink {
         this.paymentLink = null;
     }
 
+    /**
+     * Get the last generated payment link
+     * @returns The generated payment link
+     * @type string  
+     */
     public getPaymentLink() {
         return this.paymentLink;
     }
 
+    /**
+     * Generate a payment link
+     * @param data @type OzowPaymentData 
+
+     * @param shortUrl @type boolean
+     * @description Generate a short url for the payment link
+     * @default false
+     * -------------------------------
+     * @returns @type OzowLinkResponse
+     */
     public async generateLink(data: OzowPaymentData, shortUrl: boolean = false): Promise<OzowLinkResponse> {
 
         const finalData = {
