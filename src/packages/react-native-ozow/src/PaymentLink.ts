@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import generateRequestHashTest from "./utils/hashers"
+import { generateLinkHash } from "./utils/hashers"
 import { OzowLinkResponse, OzowPaymentData } from "./utils/interfaces";
 
 class PaymentLink {
@@ -37,7 +37,7 @@ class PaymentLink {
             successUrl: data.SuccessUrl,
         };
 
-        const hash = generateRequestHashTest(finalData, this.privateKey);
+        const hash = generateLinkHash(finalData, this.privateKey);
 
         try {
             const response = await axios.post("https://api.ozow.com/postpaymentrequest",
