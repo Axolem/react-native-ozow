@@ -1,0 +1,35 @@
+{
+    "name": "react-native-ozow",
+    "version": "0.0.1",
+    "main": "./index.ts",
+    "main-internal": "src/index.ts",
+    "author": "Axole Maranjana <axolemaranjana4@gmail.com>",
+    "dependencies": {
+        "react": ">=18.0.0",
+        "react-native-webview": ">=13.0.0",
+        "expo-crypto": ">=12.0",
+        "react-native": ">=0.72"
+    },
+    "rn-docs": {
+        "title": "Ozow",
+        "type": "Component"
+    },
+    "private": false,
+    "license": "MIT",
+    "homepage": "https://github.com/Axolem/test-ozow#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Axolem/test-ozow.git"
+    },
+    "keywords": [
+        "ozow",
+        "payfast",
+        "webview",
+        "react-native",
+        "ozow payment",
+        "payfast payment",
+        "react-native-ozow",
+        "react-native-payfast",
+        "stripe"
+    ]
+}
