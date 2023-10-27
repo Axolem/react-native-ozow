@@ -1,6 +1,6 @@
 import { WebView } from 'react-native-webview';
 import { useEffect, useRef, useState } from 'react';
-import { OzowPaymentResponse, OzowProps, OzowTransactionStatus, generateRequestHash, getSearchParams } from './utils';
+import { OzowPaymentResponse, OzowProps, OzowTransactionStatus, generateRequestHash, getSearchParams } from './utils/interfaces';
 
 const Ozow = (props: OzowProps) => {
 

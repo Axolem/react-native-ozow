@@ -9,8 +9,9 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@cryptography/sha512": "^0.2.0",
     "@types/react": "~18.2.14",
-    "crypto": "^1.0.1",
+    "axios": "^1.6.0",
     "expo": "~49.0.15",
     "expo-crypto": "~12.4.1",
     "expo-status-bar": "~1.6.0",
@@ -21,7 +22,8 @@
     "typescript": "^5.1.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@types/react-native-crypto-js": "^1.0.2"
   },
   "private": true
 }

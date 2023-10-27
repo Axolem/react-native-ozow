@@ -1,24 +1,27 @@
-import { OzowContentType, OzowLinkResponse, OzowPaymentData, generateRequestHash } from "./utils";
+import axios from "axios";
+
+import generateRequestHashTest from "./utils/hashers"
+import { OzowLinkResponse, OzowPaymentData } from "./utils/interfaces";
 
 class PaymentLink {
     private paymentLink: string | null;
-    private ApiKey: string | null = null;
-    private contentType: OzowContentType = OzowContentType.JSON;
-    constructor(apiKey: string) {
+    private ApiKey: string;
+    private privateKey: string;
+
+    constructor(apiKey: string, privateKey: string) {
+        if (!apiKey || !privateKey) {
+            throw new Error("API Key and Private Key are required");
+        }
         this.ApiKey = apiKey;
+        this.privateKey = privateKey;
         this.paymentLink = null;
-
-    }
-
-    public setContentType(contentType: OzowContentType) {
-        this.contentType = contentType;
     }
 
     public getPaymentLink() {
         return this.paymentLink;
     }
 
-    public async generateLink(data: OzowPaymentData): Promise<OzowLinkResponse | OzowLinkResponseError> {
+    public async generateLink(data: OzowPaymentData, shortUrl: boolean = false): Promise<OzowLinkResponse> {
 
         const finalData = {
             countryCode: data.CountryCode || "ZA",
@@ -34,78 +37,29 @@ class PaymentLink {
             successUrl: data.SuccessUrl,
         };
 
-        const hash = await generateRequestHash(
-            {
-                CountryCode: data.CountryCode || "ZA",
-                Amount: data.Amount,
-                TransactionReference: data.TransactionReference,
-                BankReference: data.BankReference,
-                CancelUrl: data.CancelUrl,
-                CurrencyCode: data.CurrencyCode || "ZAR",
-                ErrorUrl: data.ErrorUrl,
-                IsTest: data.IsTest || false,
-                NotifyUrl: data.NotifyUrl || "",
-                SiteCode: data.SiteCode,
-                SuccessUrl: data.SuccessUrl
-            },
-            this.ApiKey,
-            true
-        )
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Accept': this.contentType,
-                'ApiKey': this.ApiKey,
-                'Content-Type': this.contentType,
-            },
-            body: JSON.stringify(
-                {
-                    ...finalData,
-                    hashCheck: hash,
-                }
-            )
-        };
-
-        console.log(options.body);
+        const hash = generateRequestHashTest(finalData, this.privateKey);
 
         try {
-            const response = await fetch('https://api.ozow.com/postpaymentrequest', options);
-            const res = await response.json()
+            const response = await axios.post("https://api.ozow.com/postpaymentrequest",
+                { ...finalData, hashCheck: hash, GenerateShortUrl: shortUrl },
+                {
+                    headers: {
+                        Accept: "application/json",
+                        ApiKey: this.ApiKey,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
-            console.log(res);
-
-            if (!response.ok) {
-                throw new OzowLinkResponseError(res.errorMessage, false, response.statusText, response.status, res.paymentRequestId);
+            if (response.data.paymentRequestId) {
+                this.paymentLink = response.data.url;
             }
-            return { ...res, success: res.paymentRequestId ? true : false } as OzowLinkResponse;
-        } catch (error) {
-            return error as OzowLinkResponseError;
+            return response.data;
+
+        } catch (error: any) {
+            return error;
         }
     }
 }
-
-class OzowLinkResponseError extends Error {
-    public status: number;
-    public success: boolean;
-    public statusText: string;
-    public paymentRequestId: string;
-
-    constructor(
-        message: string,
-        success: boolean,
-        statusText: string,
-        status: number,
-        paymentRequestId: string
-    ) {
-        super(message);
-        this.name = "OzowLinkResponseError";
-        this.success = success;
-        this.statusText = statusText;
-        this.status = status;
-        this.paymentRequestId = paymentRequestId;
-    }
-}
-
 
 export default PaymentLink;

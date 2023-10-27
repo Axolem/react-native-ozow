@@ -1,5 +1,7 @@
-import * as Crypto from 'expo-crypto';
 import { ViewStyle } from 'react-native';
+import sha512 from '@cryptography/sha512';
+
+const privatekey = "f276b028558946308361979e4bf88ffa";
 
 async function generateRequestHash(data: OzowPaymentData, privateKey: string, link: boolean = false) {
     const siteCode = data.SiteCode;
@@ -16,21 +18,15 @@ async function generateRequestHash(data: OzowPaymentData, privateKey: string, li
     const customer = data.Customer ? JSON.stringify(data.Customer) : '';
 
     if (link) {
-        const inputString = `${countryCode}${amount}${transactionReference}${bankReference}${cancelUrl}${currencyCode}${errorUrl}${isTest}${siteCode}${notifyUrl}${successUrl}`
+        const inputString = `${siteCode}${countryCode}${currencyCode}${amount}${transactionReference}${bankReference}${cancelUrl}${errorUrl}${successUrl}${notifyUrl}${isTest}${privateKey}`;
+        console.warn(inputString);
+        return sha512(inputString.toLowerCase(), 'hex');
 
-        return await generateRequestHashCheck(inputString);
     }
+
     const inputString = `${siteCode}${countryCode}${currencyCode}${amount}${transactionReference}${bankReference}${customer}${cancelUrl}${errorUrl}${successUrl}${notifyUrl}${isTest}${privateKey}`;
+    return sha512(inputString.toLowerCase(), 'hex');
 
-    return await generateRequestHashCheck(inputString);
-}
-
-async function generateRequestHashCheck(inputString: string) {
-    return await getSha512Hash(inputString.toLowerCase())
-}
-
-async function getSha512Hash(stringToHash: string): Promise<string> {
-    return await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA512, stringToHash);
 }
 
 function getSearchParams(urlArr: string[]): OzowPaymentResponse {
