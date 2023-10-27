@@ -5,26 +5,26 @@ import {
   Button,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Ozow } from "react-native-ozow";
+import { Ozow, PaymentLink } from "react-native-ozow";
 
 export default function App() {
-  //const [link, setLink] = useState("");
+  const [link, setLink] = useState("");
 
-  //const myLink = new PaymentLink("...");
+  const myLink = new PaymentLink("921...", "f276...");
 
   return (
     <>
       <StatusBar style="auto" />
 
-      {/* <View style={{ paddingTop: 100 }}>
+      {false ? <View style={{ paddingTop: 100 }}>
         <Button
-          title="Pay with Ozow"
+          title="Get Payment Link"
           onPress={async () => {
             const results = await myLink.generateLink({
-              SiteCode: "IPR-IPR-003",
+              SiteCode: "IP...",
               CountryCode: "ZA",
               CurrencyCode: "ZAR",
-              Amount: 1,
+              Amount: 10,
               TransactionReference: "1234567",
               BankReference: "123456",
               CancelUrl: "https://www.ozow.com",
@@ -34,53 +34,51 @@ export default function App() {
               IsTest: false,
               Customer: "John Doe",
             });
-            console.log(results.paymentRequestId, results.success);
+
+            console.log("Visit: ", results);
 
             setLink(results.url);
+
+            console.log(myLink.getPaymentLink());
+
           }}
         />
 
         <Text>{null === link}</Text>
         <Text>{link}</Text>
-      </View> */}
+      </View>
 
+        :
+        <Ozow
+          data={{
+            SiteCode: "IPR-IPR-003",
+            CountryCode: "ZA",
+            CurrencyCode: "ZAR",
+            Amount: 1,
+            TransactionReference: "1234567",
+            BankReference: "123456",
+            CancelUrl: "https://www.ozow.com",
+            ErrorUrl: "https://www.ozow.com",
+            SuccessUrl: "https://www.ozow.com",
+            NotifyUrl: "https://www.ozow.com",
+            IsTest: false,
+            Customer: "John Doe",
+          }}
+          privateKey="f2..."
+          onErrorMessage={(error) => {
+            console.log("Payment Error: ",// error.description
+            );
+          }}
 
-      <Ozow
-        data={{
-          SiteCode: "IPR-IPR-003",
-          CountryCode: "ZA",
-          CurrencyCode: "ZAR",
-          Amount: 1,
-          TransactionReference: "1234567",
-          BankReference: "123456",
-          CancelUrl: "https://www.ozow.com",
-          ErrorUrl: "https://www.ozow.com",
-          SuccessUrl: "https://www.ozow.com",
-          NotifyUrl: "https://www.ozow.com",
-          IsTest: true,
-          Customer: "John Doe",
-        }}
-        privateKey="..."
-        onErrorMessage={(error) => {
-          console.log("Payment Error: ",
-            // error.description
-          );
+          onPaymentCancel={(data) => {
+            console.log("Payment Cancelled: ", data.Status);
+          }}
 
-        }}
-
-        onPaymentCancel={(data) => {
-          console.log("Payment Cancelled: ", data.Status);
-
-
-        }}
-
-        onPaymentSuccess={(data) => {
-          console.log("Payment Success: ", data.Status);
-
-        }}
-
-
-      />
+          onPaymentSuccess={(data) => {
+            console.log("Payment Success: ", data.Status);
+          }}
+          style={{ flex: 1 }}
+        />}
     </>
   );
 }
