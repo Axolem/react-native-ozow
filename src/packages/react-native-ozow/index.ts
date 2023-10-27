@@ -9,7 +9,7 @@ import {
     OzowPaymentResponse,
     OzowProps,
     OzowTransactionStatus
-    } from './src/utils';
+    } from './src/utils/interfaces';
 
 
 export {
