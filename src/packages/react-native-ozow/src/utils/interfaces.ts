@@ -1,44 +1,4 @@
 import { ViewStyle } from 'react-native';
-import sha512 from '@cryptography/sha512';
-
-const privatekey = "f276b028558946308361979e4bf88ffa";
-
-async function generateRequestHash(data: OzowPaymentData, privateKey: string, link: boolean = false) {
-    const siteCode = data.SiteCode;
-    const countryCode = data.CountryCode || 'ZA';
-    const currencyCode = data.CurrencyCode || 'ZAR';
-    const amount = data.Amount;
-    const transactionReference = data.TransactionReference;
-    const bankReference = data.BankReference;
-    const cancelUrl = data.CancelUrl;
-    const errorUrl = data.ErrorUrl;
-    const successUrl = data.SuccessUrl;
-    const notifyUrl = data.NotifyUrl || '';
-    const isTest = data.IsTest || false;
-    const customer = data.Customer ? JSON.stringify(data.Customer) : '';
-
-    if (link) {
-        const inputString = `${siteCode}${countryCode}${currencyCode}${amount}${transactionReference}${bankReference}${cancelUrl}${errorUrl}${successUrl}${notifyUrl}${isTest}${privateKey}`;
-        console.warn(inputString);
-        return sha512(inputString.toLowerCase(), 'hex');
-
-    }
-
-    const inputString = `${siteCode}${countryCode}${currencyCode}${amount}${transactionReference}${bankReference}${customer}${cancelUrl}${errorUrl}${successUrl}${notifyUrl}${isTest}${privateKey}`;
-    return sha512(inputString.toLowerCase(), 'hex');
-
-}
-
-function getSearchParams(urlArr: string[]): OzowPaymentResponse {
-    const params = urlArr[1].split('&');
-    const obj: OzowPaymentResponse = {} as OzowPaymentResponse;
-
-    params.forEach((param) => {
-        const [key, value] = param.split('=');
-        obj[key as keyof OzowPaymentResponse] = value;
-    });
-    return obj;
-}
 
 interface OzowPaymentData {
     SiteCode: string;
@@ -121,10 +81,8 @@ interface OzowLinkResponse {
 export {
     OzowProps,
     OzowPaymentData,
-    getSearchParams,
     OzowPaymentError,
     OzowPaymentResponse,
-    generateRequestHash,
     OzowTransactionStatus,
     OzowContentType,
     OzowLinkResponse,
