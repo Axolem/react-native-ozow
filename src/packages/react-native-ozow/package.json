@@ -5,10 +5,8 @@
     "main-internal": "src/index.ts",
     "author": "Axole Maranjana <axolemaranjana4@gmail.com>",
     "dependencies": {
-        "react": ">=18.0.0",
         "react-native-webview": ">=13.0.0",
-        "@cryptography/sha512": "^0.2.0",
-        "react-native": ">=0.72"
+        "@cryptography/sha512": "^0.2.0"
     },
     "rn-docs": {
         "title": "Ozow",
