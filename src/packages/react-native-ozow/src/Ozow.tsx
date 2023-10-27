@@ -5,6 +5,12 @@ import getSearchParams from './utils/params';
 import { generateRequestHash } from './utils/hashers';
 import { OzowPaymentResponse, OzowProps, OzowTransactionStatus } from './utils/interfaces';
 
+/**
+ * Ozow React Native Component
+ * 
+ * @param props @type OzowProps
+ * @returns A React Native WebView component that will load the Ozow payment page
+ */
 const Ozow = (props: OzowProps) => {
 
     const { data } = props;
@@ -72,7 +78,10 @@ const Ozow = (props: OzowProps) => {
             mixedContentMode="always"
             style={[props.style, { flex: 1 }]}
             onError={({ nativeEvent }) => props.onErrorMessage?.(nativeEvent)}
-            onNavigationStateChange={({ url }) => {
+            onNavigationStateChange={(error) => {
+
+                const { url } = error;
+
                 if (url === "https://pay.ozow.com/request-error" && retry < 3) {
                     setReady(!ready);
                     setRetry(retry + 1);
@@ -94,7 +103,8 @@ const Ozow = (props: OzowProps) => {
                 } else if (ozowResponse?.Status === OzowTransactionStatus.CANCELLED && props?.onPaymentCancel) {
                     props.onPaymentCancel(ozowResponse);
                 } else {
-                    props.onErrorMessage?.(ozowResponse);
+                    if (retry < 3) return;
+                    props.onErrorMessage?.(error);
                 }
             }}
         />
