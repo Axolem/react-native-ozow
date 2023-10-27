@@ -35,23 +35,23 @@ async function getSha512Hash(stringToHash: string): Promise<string> {
 
 function getSearchParams(urlArr: string[]): OzowPaymentResponse {
     const params = urlArr[1].split('&');
-    const obj = {};
+    const obj: OzowPaymentResponse = {} as OzowPaymentResponse;
 
     params.forEach((param) => {
         const [key, value] = param.split('=');
-        obj[key] = value;
+        obj[key as keyof OzowPaymentResponse] = value;
     });
-    return obj as OzowPaymentResponse;
+    return obj;
 }
 
 interface OzowPaymentData {
     SiteCode: string;
-    CountryCode?: string;
-    CurrencyCode?: string;
+    CountryCode?: "ZAR" | string | CurrencyCodes;
+    CurrencyCode?: "ZAR";
     Amount: number;
     TransactionReference: string;
     BankReference: string;
-    Customer?: string | number | null | any;
+    Customer?: string | number | null;
     CancelUrl: string;
     ErrorUrl: string;
     SuccessUrl: string;
@@ -105,13 +105,22 @@ enum OzowContentType {
     FORM = "application/xml ",
 }
 
-interface OzowLinkResponse {
-    paymentRequestId: string;
-    url: string;
-    errorMessage: boolean;
-    success: boolean;
+enum CountryCodes {
+    ZA = "ZA",
+    //BW = "BW",
+    //LS = "LS",
+    //SZ = "SZ",
 }
 
+enum CurrencyCodes {
+    ZAR = "ZAR",
+}
+
+interface OzowLinkResponse {
+    paymentRequestId: string | null;
+    url: string | null;
+    errorMessage: boolean | null;
+}
 
 export {
     OzowProps,
@@ -123,4 +132,6 @@ export {
     OzowTransactionStatus,
     OzowContentType,
     OzowLinkResponse,
+    CurrencyCodes,
+    CountryCodes,
 };
