@@ -94,6 +94,7 @@ const Ozow = (props: OzowProps) => {
                 } else if (ozowResponse?.Status === OzowTransactionStatus.CANCELLED && props?.onPaymentCancel) {
                     props.onPaymentCancel(ozowResponse);
                 } else {
+                    if (retry < 3) return;
                     props.onErrorMessage?.(ozowResponse);
                 }
             }}
