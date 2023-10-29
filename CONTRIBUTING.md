@@ -15,10 +15,12 @@ The project is maintained using the "fork and pull" model. To contribute, you wi
    ```bash
    # Clone your fork of the repo into the current directory
    git clone https://github.com/Axolem/react-native-ozow.git
-    # Navigate to the newly cloned directory
-    cd react-native-ozow
-    # Assign the original repo to a remote called "upstream"
-    git remote add upstream
+   
+   # Navigate to the newly cloned directory
+   cd react-native-ozow
+
+   # Assign the original repo to a remote called "upstream"
+   git remote add upstream
 
    ```
 
