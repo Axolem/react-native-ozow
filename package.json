@@ -24,5 +24,6 @@
     "@babel/core": "^7.20.0",
     "@types/react-native-crypto-js": "^1.0.2"
   },
-  "private": true
+  "private": false,
+  "license": "MIT"
 }

@@ -1,44 +1,52 @@
 # **React Native Ozow**
 
-[![npm version](https://badge.fury.io/js/react-native-ozow.svg)](https://badge.fury.io/js/react-native-ozow)
-[![npm downloads](https://img.shields.io/npm/dm/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
-[![npm](https://img.shields.io/npm/dt/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
-[![npm](https://img.shields.io/npm/l/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow) 
-[![GitHub issues](https://img.shields.io/github/issues/Axolem/test-ozow.svg)](https://github.com/Axolem/test-ozow/issues)
+[![npm](https://img.shields.io/npm/v/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
+[![npm](https://img.shields.io/npm/dm/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
+[![GitHub issues](https://img.shields.io/github/issues/axolem/react-native-ozow.svg)](https://github.com/Axolem/react-native-ozow/issues)
+[![GitHub stars](https://img.shields.io/github/stars/axolem/react-native-ozow.svg)]
+[![GitHub license](https://img.shields.io/github/license/axolem/react-native-ozow.svg)]
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/axolem/react-native-ozow.svg?style=social)](https://twitter.com/intent/tweet?text=Checkout%20React%20Native%20Payfast%20Plugin!%20https://github.com/axolem/react-native-ozow%20via%20@axole_ma)
+[![GitHub contributors](https://img.shields.io/github/contributors/axolem/react-native-ozow.svg)]
+[![GitHub last commit](https://img.shields.io/github/last-commit/axolem/react-native-ozow.svg)]
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/axolem/react-native-ozow.svg)]
+[![GitHub pull requests](https://img.shields.io/github/issues-pr-closed/axolem/react-native-ozow.svg)]
+[![GitHub forks](https://img.shields.io/github/forks/axolem/react-native-ozow.svg?style=social&label=Fork)]
+[![GitHub stars](https://img.shields.io/github/stars/axolem/react-native-ozow.svg?style=social&label=Stars)]
+[![GitHub watchers](https://img.shields.io/github/watchers/axolem/react-native-ozow.svg?style=social&label=Watch)]
 
+React Native Ozow is a React Native library for integrating [Ozow](https://www.ozow.com) payment gateway into your React Native app. It supports both In-App and Link payments.
 
-React Native Ozow is a React Native library for integrating [Ozow](https://www.ozow.com) payment gateway into your React Native app. It supports both In-App and Link payments. 
- 
-**Thsi is not an official Ozow library.**
+#### **This is not an official Ozow library.**
+
+## Check out my other libraries
+
+- [React Native Payfast](https://www.npmjs.com/package/react-native-payfast-plugin)
 
 ## Table of contents
 
-- [react-native-ozow](#react-native-ozow)
-  - [Table of contents](#table-of-contents)
-  - [Getting started](#getting-started)
-  - [Documentation](#documentation)
-    - [Usage](#usage)
-  - [Demos](#demos)
-  - [In-App Payments](#in-app-payments)
-    - [Props](#props)
-    - [Data](#data)
-  - [Link Payments](#link-payments)
-    - [PaymentLink Params](#paymentlink-params)
-    - [PaymentLink Methods](#paymentlink-methods)
-    - [PaymentLink Data](#paymentlink-data)
-  - [Author](#author)
-  - [Help wanted!](#help-wanted)
-  - [Credits](#credits)
-  - [Support](#support)
-  - [Donate](#donate)
-  - [Follow me](#follow-me)
+- [Documentation](#documentation)
+  - [Usage](#usage)
+- [Demos](#demos)
+- [In-App Payments](#in-app-payments)
+  - [Props](#props)
+  - [Data](#data)
+- [Link Payments](#link-payments)
+  - [PaymentLink Params](#paymentlink-params)
+  - [PaymentLink Methods](#paymentlink-methods)
+  - [PaymentLink Data](#paymentlink-data)
+- [Author](#author)
+- [Help wanted!](#help-wanted)
+- [Credits](#credits)
+- [Support](#support)
+- [Donate](#donate)
+- [Follow me](#follow-me)
 
 ### Getting started
 
 ```bash
 npm install react-native-ozow
 ```
-
+Expo?
 ```bash
 npx expo install react-native-ozow
 ```
@@ -51,7 +59,7 @@ npx expo install react-native-ozow
 
 ## Demos
 
- ![In-App Payments](https://github.com/Axolem/test-ozow/blob/master/assets/ezgif.com-video-to-gif.gif) ![Link Payments](https://github.com/Axolem/test-ozow/blob/master/assets/Untitled%20video%20-%20Screen%20Recording%20-%202023_10_27%2C%2008_48_52.gif)
+![In-App Payments](https://github.com/Axolem/test-ozow/blob/master/assets/ezgif.com-video-to-gif.gif) ![Link Payments](https://github.com/Axolem/test-ozow/blob/master/assets/Untitled%20video%20-%20Screen%20Recording%20-%202023_10_27%2C%2008_48_52.gif)
 
 ## In-App Payments
 
@@ -182,12 +190,8 @@ const myLink = new PaymentLink("9219...[API_KEY]", "f276...[PRIVATE_KEY]");
 
 ## Donate
 
-- If you like this project and you want to support me, you can donate to my [PayPal](https://paypal.me/axoleforex) account.
+<a href="https://www.buymeacoffee.com/axolem" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="150" ></a>
 
 ## Follow me
 
 - [LinkedIn](https://www.linkedin.com/in/axolemaranjana/)
-
-```
-
-```
