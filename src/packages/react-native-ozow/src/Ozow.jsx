@@ -54,7 +54,7 @@ const Ozow = (props) => {
         // Load the WebView with the injected JavaScript
         webViewRef.current?.injectJavaScript(injectedJavaScript);
     }, [ready]);
-    return (<WebView ref={webViewRef} scalesPageToFit javaScriptEnabled domStorageEnabled startInLoadingState thirdPartyCookiesEnabled source={{ uri: apiUrl }} mixedContentMode="always" style={[props.style, { flex: 1 }]} onError={({ nativeEvent }) => props.onErrorMessage?.(nativeEvent)} onNavigationStateChange={(error) => {
+    return (<WebView ref={webViewRef} scalesPageToFit javaScriptEnabled domStorageEnabled startInLoadingState thirdPartyCookiesEnabled source={{ html: '<html><body></body></html>' }} mixedContentMode="always" style={[props.style, { flex: 1 }]} onError={({ nativeEvent }) => props.onErrorMessage?.(nativeEvent)} onNavigationStateChange={(error) => {
             const { url } = error;
             if (url === "https://pay.ozow.com/request-error" && retry < 3) {
                 setReady(!ready);

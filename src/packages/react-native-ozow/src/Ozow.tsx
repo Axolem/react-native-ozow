@@ -74,7 +74,7 @@ const Ozow = (props: OzowProps) => {
             domStorageEnabled
             startInLoadingState
             thirdPartyCookiesEnabled
-            source={{ uri: apiUrl }}
+            source={{html: '<html><body></body></html>' }}
             mixedContentMode="always"
             style={[props.style, { flex: 1 }]}
             onError={({ nativeEvent }) => props.onErrorMessage?.(nativeEvent)}
