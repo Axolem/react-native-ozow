@@ -152,4 +152,7 @@ interface OzowLinkResponse {
      */
     errorMessage: boolean | null;
 }
-export { OzowProps, OzowPaymentData, OzowPaymentError, OzowPaymentResponse, OzowTransactionStatus, OzowContentType, OzowLinkResponse, CurrencyCodes, CountryCodes, };
+interface LinkData {
+    [key: string]: string | number | boolean;
+}
+export { OzowProps, OzowPaymentData, OzowPaymentError, OzowPaymentResponse, OzowTransactionStatus, OzowContentType, OzowLinkResponse, CurrencyCodes, CountryCodes, LinkData };

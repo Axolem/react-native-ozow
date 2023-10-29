@@ -22,4 +22,4 @@ var CurrencyCodes;
 (function (CurrencyCodes) {
     CurrencyCodes["ZAR"] = "ZAR";
 })(CurrencyCodes || (CurrencyCodes = {}));
-export { OzowTransactionStatus, OzowContentType, CurrencyCodes, CountryCodes, };
+export { OzowTransactionStatus, OzowContentType, CurrencyCodes, CountryCodes };

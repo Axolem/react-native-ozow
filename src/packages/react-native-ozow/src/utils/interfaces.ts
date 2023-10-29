@@ -184,6 +184,8 @@ interface OzowLinkResponse {
     errorMessage: boolean | null;
 }
 
+interface LinkData { [key: string]: string | number | boolean }
+
 export {
     OzowProps,
     OzowPaymentData,
@@ -194,4 +196,5 @@ export {
     OzowLinkResponse,
     CurrencyCodes,
     CountryCodes,
+    LinkData
 };

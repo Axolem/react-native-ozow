@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { generateLinkHash } from "./utils/hashers"
-import { OzowLinkResponse, OzowPaymentData } from "./utils/interfaces";
+import { LinkData, OzowLinkResponse, OzowPaymentData } from "./utils/interfaces";
 
 /**
  * Class for generating payment links for Ozow.
@@ -46,7 +46,7 @@ class PaymentLink {
      */
     public async generateLink(data: OzowPaymentData, shortUrl: boolean = false): Promise<OzowLinkResponse> {
 
-        const finalData = {
+        const finalData: LinkData = {
             countryCode: data.CountryCode || "ZA",
             amount: data.Amount,
             transactionReference: data.TransactionReference,
