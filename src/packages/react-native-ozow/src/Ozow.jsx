@@ -1,29 +1,22 @@
 import { WebView } from 'react-native-webview';
 import { useEffect, useRef, useState } from 'react';
-
 import getSearchParams from './utils/params';
 import { generateRequestHash } from './utils/hashers';
-import { OzowPaymentResponse, OzowProps, OzowTransactionStatus } from './utils/interfaces';
-
+import { OzowTransactionStatus } from './utils/interfaces';
 /**
  * Ozow React Native Component
- * 
+ *
  * @param props @type OzowProps
  * @returns A React Native WebView component that will load the Ozow payment page
  */
-const Ozow = (props: OzowProps) => {
-
+const Ozow = (props) => {
     const { data } = props;
     const apiUrl = 'https://pay.ozow.com/';
-
     const [retry, setRetry] = useState(0);
     const [ready, setReady] = useState(false);
-
-    const webViewRef = useRef<WebView>(null);
-
+    const webViewRef = useRef(null);
     useEffect(() => {
         const HashCheck = generateRequestHash(data, props.privateKey);
-
         //ensure order of data is correct
         const orderedData = new Map();
         orderedData.set('SiteCode', data.SiteCode);
@@ -39,9 +32,7 @@ const Ozow = (props: OzowProps) => {
         orderedData.set('NotifyUrl', data.NotifyUrl || '');
         orderedData.set('IsTest', data.IsTest || false);
         orderedData.set('HashCheck', HashCheck);
-
         const fullData = JSON.stringify(Object.fromEntries(orderedData));
-
         // Inject JavaScript code to perform the POST request on initial page load
         const injectedJavaScript = `
                 const form = document.createElement('form');
@@ -60,55 +51,34 @@ const Ozow = (props: OzowProps) => {
                 document.body.appendChild(form);
                 form.submit();
             `;
-
         // Load the WebView with the injected JavaScript
         webViewRef.current?.injectJavaScript(injectedJavaScript);
-
     }, [ready]);
-
-    return (
-        <WebView
-            ref={webViewRef}
-            scalesPageToFit
-            javaScriptEnabled
-            domStorageEnabled
-            startInLoadingState
-            thirdPartyCookiesEnabled
-            source={{ uri: apiUrl }}
-            mixedContentMode="always"
-            style={[props.style, { flex: 1 }]}
-            onError={({ nativeEvent }) => props.onErrorMessage?.(nativeEvent)}
-            onNavigationStateChange={(error) => {
-
-                const { url } = error;
-
-                if (url === "https://pay.ozow.com/request-error" && retry < 3) {
-                    setReady(!ready);
-                    setRetry(retry + 1);
-                }
-
-                const urlArr = url.split('?');
-
-                if (urlArr.length <= 1) {
+    return (<WebView ref={webViewRef} scalesPageToFit javaScriptEnabled domStorageEnabled startInLoadingState thirdPartyCookiesEnabled source={{ uri: apiUrl }} mixedContentMode="always" style={[props.style, { flex: 1 }]} onError={({ nativeEvent }) => props.onErrorMessage?.(nativeEvent)} onNavigationStateChange={(error) => {
+            const { url } = error;
+            if (url === "https://pay.ozow.com/request-error" && retry < 3) {
+                setReady(!ready);
+                setRetry(retry + 1);
+            }
+            const urlArr = url.split('?');
+            if (urlArr.length <= 1) {
+                return;
+            }
+            const ozowResponse = getSearchParams(urlArr);
+            //Check if the transaction was successful
+            if (ozowResponse?.Status === OzowTransactionStatus.SUCCESS
+                && ozowResponse?.Hash
+                && props?.onPaymentSuccess) {
+                props.onPaymentSuccess(ozowResponse);
+            }
+            else if (ozowResponse?.Status === OzowTransactionStatus.CANCELLED && props?.onPaymentCancel) {
+                props.onPaymentCancel(ozowResponse);
+            }
+            else {
+                if (retry < 3)
                     return;
-                }
-
-                const ozowResponse: OzowPaymentResponse = getSearchParams(urlArr);
-
-                //Check if the transaction was successful
-                if (ozowResponse?.Status === OzowTransactionStatus.SUCCESS
-                    && ozowResponse?.Hash
-                    && props?.onPaymentSuccess) {
-                    props.onPaymentSuccess(ozowResponse);
-                } else if (ozowResponse?.Status === OzowTransactionStatus.CANCELLED && props?.onPaymentCancel) {
-                    props.onPaymentCancel(ozowResponse);
-                } else {
-                    if (retry < 3) return;
-                    props.onErrorMessage?.(error);
-                }
-            }}
-        />
-    );
-}
-
+                props.onErrorMessage?.(error);
+            }
+        }}/>);
+};
 export default Ozow;

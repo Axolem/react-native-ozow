@@ -1,22 +1,18 @@
 import axios from "axios";
-
-import { generateLinkHash } from "./utils/hashers"
-import { OzowLinkResponse, OzowPaymentData } from "./utils/interfaces";
-
+import { generateLinkHash } from "./utils/hashers";
 /**
  * Class for generating payment links for Ozow.
- * 
+ *
  * @param1  API Key
  * @param2  Private Key
- * 
+ *
  * @see https://hub.ozow.com/docs/step-post-from-merchant-website#generate-payment-url-using-api
 */
 class PaymentLink {
-    private paymentLink: string | null;
-    private ApiKey: string;
-    private privateKey: string;
-
-    constructor(apiKey: string, privateKey: string) {
+    paymentLink;
+    ApiKey;
+    privateKey;
+    constructor(apiKey, privateKey) {
         if (!apiKey || !privateKey) {
             throw new Error("API Key and Private Key are required");
         }
@@ -24,19 +20,17 @@ class PaymentLink {
         this.privateKey = privateKey;
         this.paymentLink = null;
     }
-
     /**
      * Get the last generated payment link
      * @returns The generated payment link
-     * @type string  
+     * @type string
      */
-    public getPaymentLink() {
+    getPaymentLink() {
         return this.paymentLink;
     }
-
     /**
      * Generate a payment link
-     * @param data @type OzowPaymentData 
+     * @param data @type OzowPaymentData
 
      * @param shortUrl @type boolean
      * @description Generate a short url for the payment link
@@ -44,8 +38,7 @@ class PaymentLink {
      * -------------------------------
      * @returns @type OzowLinkResponse
      */
-    public async generateLink(data: OzowPaymentData, shortUrl: boolean = false): Promise<OzowLinkResponse> {
-
+    async generateLink(data, shortUrl = false) {
         const finalData = {
             countryCode: data.CountryCode || "ZA",
             amount: data.Amount,
@@ -59,30 +52,23 @@ class PaymentLink {
             siteCode: data.SiteCode,
             successUrl: data.SuccessUrl,
         };
-
         const hash = generateLinkHash(finalData, this.privateKey);
-
         try {
-            const response = await axios.post("https://api.ozow.com/postpaymentrequest",
-                { ...finalData, hashCheck: hash, GenerateShortUrl: shortUrl },
-                {
-                    headers: {
-                        Accept: "application/json",
-                        ApiKey: this.ApiKey,
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
+            const response = await axios.post("https://api.ozow.com/postpaymentrequest", { ...finalData, hashCheck: hash, GenerateShortUrl: shortUrl }, {
+                headers: {
+                    Accept: "application/json",
+                    ApiKey: this.ApiKey,
+                    "Content-Type": "application/json",
+                },
+            });
             if (response.data.paymentRequestId) {
                 this.paymentLink = response.data.url;
             }
             return response.data;
-
-        } catch (error: any) {
+        }
+        catch (error) {
             return error;
         }
     }
 }
-
 export default PaymentLink;

@@ -1,6 +1,6 @@
 {
     "name": "react-native-ozow",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "main": "./index.ts",
     "main-internal": "src/index.ts",
     "author": "Axole Maranjana <axolemaranjana4@gmail.com>",
