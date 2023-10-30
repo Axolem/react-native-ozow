@@ -5,12 +5,13 @@ import {
   Button,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Ozow, PaymentLink } from "react-native-ozow";
+
+ import { Ozow, PaymentLink } from "react-native-ozow";
 
 export default function App() {
   const [link, setLink] = useState("");
 
-  const myLink = new PaymentLink("921...", "f276...");
+  const myLink = new PaymentLink("92...", "f2...");
 
   return (
     <>
@@ -21,7 +22,7 @@ export default function App() {
           title="Get Payment Link"
           onPress={async () => {
             const results = await myLink.generateLink({
-              SiteCode: "IP...",
+              SiteCode: "IPR-IPR-003",
               CountryCode: "ZA",
               CurrencyCode: "ZAR",
               Amount: 10,
@@ -44,18 +45,17 @@ export default function App() {
           }}
         />
 
-        <Text>{null === link}</Text>
         <Text>{link}</Text>
       </View>
 
         :
         <Ozow
           data={{
-            SiteCode: "IPR-IPR-003",
+            SiteCode: "IPR...",
             CountryCode: "ZA",
             CurrencyCode: "ZAR",
             Amount: 1,
-            TransactionReference: "1234567",
+            TransactionReference: "12345671",
             BankReference: "123456",
             CancelUrl: "https://www.ozow.com",
             ErrorUrl: "https://www.ozow.com",
@@ -64,7 +64,7 @@ export default function App() {
             IsTest: false,
             Customer: "John Doe",
           }}
-          privateKey="f2..."
+          privateKey="f27..."
           onErrorMessage={(error) => {
             console.log("Payment Error: ",// error.description
             );

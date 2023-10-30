@@ -1,5 +1,9 @@
 # **React Native Ozow**
 
+React Native Ozow is a React Native library for integrating [Ozow](https://ozow.com) payment gateway into your React Native app. It supports both In-App and Link payments.
+
+#### **This is not an official Ozow library.**
+
 [![npm](https://img.shields.io/npm/v/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
 [![npm](https://img.shields.io/npm/dm/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
 [![GitHub issues](https://img.shields.io/github/issues/axolem/react-native-ozow.svg)](https://github.com/Axolem/react-native-ozow/issues)
@@ -13,10 +17,6 @@
 [![GitHub forks](https://img.shields.io/github/forks/axolem/react-native-ozow.svg?style=social&label=Fork)]
 [![GitHub stars](https://img.shields.io/github/stars/axolem/react-native-ozow.svg?style=social&label=Stars)]
 [![GitHub watchers](https://img.shields.io/github/watchers/axolem/react-native-ozow.svg?style=social&label=Watch)]
-
-React Native Ozow is a React Native library for integrating [Ozow](https://ozow.com) payment gateway into your React Native app. It supports both In-App and Link payments.
-
-#### **This is not an official Ozow library.**
 
 ## Check out my other libraries
 
@@ -119,6 +119,28 @@ export default MyPaymemt;
 | IsTest               | `boolean`          | Run on test mode when `true`                       | No (default `false`)                                             |
 | style                | `object`           | Style passed to the WebView component              | No                                                               |
 
+### In-App Payments Response example
+
+```json
+{
+  "Amount": "1.00",
+  "BankName": "Capitec+Pay",
+  "CurrencyCode": "ZAR",
+  "Hash": "e2a02f05650f7468963776e8d6...73baf3835",
+  "IsTest": "true",
+  "Optional1": "",
+  "Optional2": "",
+  "Optional3": "",
+  "Optional4": "",
+  "Optional5": "",
+  "SiteCode": "IPR-IPR-003",
+  "Status": "Complete", // or "Cancelled" or "Error"
+  "StatusMessage": "Test+transaction+completed",
+  "TransactionId": "e315bf89-...-9823ef5d3d41",
+  "TransactionReference": "12345671"
+}
+```
+
 ## Link Payments
 
 ```javascript
@@ -172,6 +194,16 @@ const myLink = new PaymentLink("9219...[API_KEY]", "f276...[PRIVATE_KEY]");
 
 [See In-App Payments Data](./readme.md#data)
 
+### PaymentLink Response example
+
+```json
+{
+  "errorMessage": null,
+  "paymentRequestId": "77cc0a3f-c4cc-40fd-9048-de78d9a03ce0",
+  "url": "https://pay.ozow.com/77cc0a3f-c4cc-40fd-9048-de78d9a03ce0/Secure"
+}
+```
+
 ## Author
 
 ## Author
@@ -198,4 +230,3 @@ const myLink = new PaymentLink("9219...[API_KEY]", "f276...[PRIVATE_KEY]");
 ## Donate
 
 <a href="https://www.buymeacoffee.com/axolem" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="150" ></a>
-
