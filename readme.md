@@ -119,6 +119,28 @@ export default MyPaymemt;
 | IsTest               | `boolean`          | Run on test mode when `true`                       | No (default `false`)                                             |
 | style                | `object`           | Style passed to the WebView component              | No                                                               |
 
+### In-App Payments Response example
+
+```json
+{
+  "Amount": "1.00",
+  "BankName": "Capitec+Pay",
+  "CurrencyCode": "ZAR",
+  "Hash": "e2a02f05650f7468963776e8d6...73baf3835",
+  "IsTest": "true",
+  "Optional1": "",
+  "Optional2": "",
+  "Optional3": "",
+  "Optional4": "",
+  "Optional5": "",
+  "SiteCode": "IPR-IPR-003",
+  "Status": "Complete", // or "Cancelled" or "Error"
+  "StatusMessage": "Test+transaction+completed",
+  "TransactionId": "e315bf89-...-9823ef5d3d41",
+  "TransactionReference": "12345671"
+}
+```
+
 ## Link Payments
 
 ```javascript
@@ -171,6 +193,16 @@ const myLink = new PaymentLink("9219...[API_KEY]", "f276...[PRIVATE_KEY]");
 ### PaymentLink Data
 
 [See In-App Payments Data](./readme.md#data)
+
+### PaymentLink Response example
+
+```json
+{
+  "errorMessage": null,
+  "paymentRequestId": "77cc0a3f-c4cc-40fd-9048-de78d9a03ce0",
+  "url": "https://pay.ozow.com/77cc0a3f-c4cc-40fd-9048-de78d9a03ce0/Secure"
+}
+```
 
 ## Author
 
