@@ -14,10 +14,10 @@
     },
     "private": false,
     "license": "MIT",
-    "homepage": "https://github.com/Axolem/test-ozow#readme",
+    "homepage": "https://github.com/Axolem/react-native-ozow#readme",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Axolem/test-ozow.git"
+        "url": "https://github.com/Axolem/react-native-ozow"
     },
     "keywords": [
         "ozow",
