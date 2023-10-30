@@ -1,5 +1,9 @@
 # **React Native Ozow**
 
+React Native Ozow is a React Native library for integrating [Ozow](https://ozow.com) payment gateway into your React Native app. It supports both In-App and Link payments.
+
+#### **This is not an official Ozow library.**
+
 [![npm](https://img.shields.io/npm/v/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
 [![npm](https://img.shields.io/npm/dm/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
 [![GitHub issues](https://img.shields.io/github/issues/axolem/react-native-ozow.svg)](https://github.com/Axolem/react-native-ozow/issues)
@@ -13,10 +17,6 @@
 [![GitHub forks](https://img.shields.io/github/forks/axolem/react-native-ozow.svg?style=social&label=Fork)]
 [![GitHub stars](https://img.shields.io/github/stars/axolem/react-native-ozow.svg?style=social&label=Stars)]
 [![GitHub watchers](https://img.shields.io/github/watchers/axolem/react-native-ozow.svg?style=social&label=Watch)]
-
-React Native Ozow is a React Native library for integrating [Ozow](https://ozow.com) payment gateway into your React Native app. It supports both In-App and Link payments.
-
-#### **This is not an official Ozow library.**
 
 ## Check out my other libraries
 
@@ -198,4 +198,3 @@ const myLink = new PaymentLink("9219...[API_KEY]", "f276...[PRIVATE_KEY]");
 ## Donate
 
 <a href="https://www.buymeacoffee.com/axolem" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="150" ></a>
-

@@ -3,6 +3,17 @@
     "version": "1.0.0",
     "main": "./index.ts",
     "main-internal": "src/index.ts",
+    "types": "./index.d.ts",
+    "description": "React Native Ozow is a React Native library for integrating Ozow payment gateway into your React Native app. It supports both In-App and Link payments.",
+    "exports":{
+        ".": {
+            "import": "./index.ts",
+            "require": "./index.js",
+            "types": "./index.d.ts",
+            "default": "./index.js"
+        },
+        "./src": null
+    },
     "author": "Axole Maranjana <axolemaranjana4@gmail.com>",
     "dependencies": {
         "react-native-webview": ">=13.0.0",

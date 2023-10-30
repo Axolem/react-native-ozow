@@ -1,5 +1,9 @@
 # **React Native Ozow**
 
+React Native Ozow is a React Native library for integrating [Ozow](https://ozow.com) payment gateway into your React Native app. It supports both In-App and Link payments.
+
+#### **This is not an official Ozow library.**
+
 [![npm](https://img.shields.io/npm/v/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
 [![npm](https://img.shields.io/npm/dm/react-native-ozow.svg)](https://www.npmjs.com/package/react-native-ozow)
 [![GitHub issues](https://img.shields.io/github/issues/axolem/react-native-ozow.svg)](https://github.com/Axolem/react-native-ozow/issues)
@@ -13,10 +17,6 @@
 [![GitHub forks](https://img.shields.io/github/forks/axolem/react-native-ozow.svg?style=social&label=Fork)]
 [![GitHub stars](https://img.shields.io/github/stars/axolem/react-native-ozow.svg?style=social&label=Stars)]
 [![GitHub watchers](https://img.shields.io/github/watchers/axolem/react-native-ozow.svg?style=social&label=Watch)]
-
-React Native Ozow is a React Native library for integrating [Ozow](https://ozow.com/) payment gateway into your React Native app. It supports both In-App and Link payments.
-
-#### **This is not an official Ozow library.**
 
 ## Check out my other libraries
 
@@ -76,10 +76,10 @@ const MyPaymemt = () =>{
                 Amount: 1000, // in rands
                 TransactionReference: "1234567",
                 BankReference: "123456",
-                CancelUrl: "https://ozow.com/",
-                ErrorUrl: "https://ozow.com/",
-                SuccessUrl: "https://ozow.com/",
-                NotifyUrl: "https://ozow.com/",
+                CancelUrl: "https://ozow.com",
+                ErrorUrl: "https://ozow.com",
+                SuccessUrl: "https://ozow.com",
+                NotifyUrl: "https://ozow.com",
                 }}
             privateKey="f276b028..."
             onErrorMessage={...}
@@ -137,10 +137,10 @@ const myLink = new PaymentLink("9219...[API_KEY]", "f276...[PRIVATE_KEY]");
               Amount: 10,
               TransactionReference: "1234567",
               BankReference: "123456",
-              CancelUrl: "https://ozow.com/",
-              ErrorUrl: "https://ozow.com/",
-              SuccessUrl: "https://ozow.com/",
-              NotifyUrl: "https://ozow.com/",
+              CancelUrl: "https://ozow.com",
+              ErrorUrl: "https://ozow.com",
+              SuccessUrl: "https://ozow.com",
+              NotifyUrl: "https://ozow.com",
               IsTest: false,
               Customer: "John Doe",
             }, false);
@@ -174,10 +174,12 @@ const myLink = new PaymentLink("9219...[API_KEY]", "f276...[PRIVATE_KEY]");
 
 ## Author
 
+## Author
+
 - Axole Maranjana [![Twitter Follow](https://img.shields.io/twitter/follow/iamraphson.svg?style=social&label=Follow)](https://twitter.com/axole_ma)
-[![GitHub followers](https://img.shields.io/github/followers/axolem.svg?style=social&label=Follow)](https://github.com/AxoleM)
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=social&logo=instagram)](https://www.instagram.com/axole_mar/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=social&logo=linkedin)](https://www.linkedin.com/in/axolemaranjana/)
+  [![GitHub followers](https://img.shields.io/github/followers/axolem.svg?style=social&label=Follow)](https://github.com/AxoleM)
+  [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=social&logo=instagram)](https://www.instagram.com/axole_mar/)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=social&logo=linkedin)](https://www.linkedin.com/in/axolemaranjana/)
 
 ## Help wanted!
 
@@ -185,7 +187,7 @@ const myLink = new PaymentLink("9219...[API_KEY]", "f276...[PRIVATE_KEY]");
 
 ## Credits
 
-- [Ozow](https://ozow.com/)
+- [Ozow](https://ozow.com)
 - [React Native](https://reactnative.dev)
 - [Expo](https://expo.io)
 
