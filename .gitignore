@@ -41,4 +41,10 @@ yarn-error.*
 %*
 keys
 *.d.ts
-./src/packages/react-native-ozow/*.js"
+/src/packages/react-native-ozow/*.js
+/src/packages/react-native-ozow/src/*.js
+/src/packages/react-native-ozow/src/*/*.js
+
+/src/packages/react-native-ozow/*.d.ts
+/src/packages/react-native-ozow/src/*.d.ts
+/src/packages/react-native-ozow/src/*/*.d.ts
