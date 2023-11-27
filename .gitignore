@@ -48,3 +48,4 @@ keys
 /src/packages/react-native-ozow/*.d.ts
 /src/packages/react-native-ozow/src/*.d.ts
 /src/packages/react-native-ozow/src/*/*.d.ts
+package-lock.json
