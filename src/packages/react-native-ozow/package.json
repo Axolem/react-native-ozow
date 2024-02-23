@@ -13,8 +13,12 @@
     "dependencies": {
         "@cryptography/sha512": "^0.2.0",
         "axios": "^1.6.0",
-        "changeset": "^0.2.6",
         "react-native-webview": ">=13.0.0"
+    },
+    "devDependencies": {
+        "changeset": "^0.2.6",
+        "tsup": "^0.3.0",
+        "typescript": "^4.3.5"
     },
     "rn-docs": {
         "title": "Ozow",
