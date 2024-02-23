@@ -1,14 +1,16 @@
 {
-  "compilerOptions": {
-    "jsx": "react-native",
-    "strict": true,
-    "target": "ESNext",
-    "declaration": true,
-    "skipLibCheck": true,
-    "alwaysStrict": true,
-    "moduleResolution": "node",
-    "useUnknownInCatchVariables": true,
-    "forceConsistentCasingInFileNames": true,
-    "removeComments": true
-  }
+	"compilerOptions": {
+		"jsx": "react-native",
+		"strict": true,
+		"target": "ES2016",
+		"skipLibCheck": true,
+		"alwaysStrict": true,
+		"moduleResolution": "node",
+		"useUnknownInCatchVariables": true,
+		"forceConsistentCasingInFileNames": true,
+		"removeComments": true,
+		"noEmit": true,
+		"noUncheckedIndexedAccess": true,
+		"esModuleInterop": true
+	}
 }
