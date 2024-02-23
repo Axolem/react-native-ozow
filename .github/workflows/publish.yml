@@ -20,10 +20,12 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 7
+          path: ./scr/packages/react-native-ozow
       - uses: actions/setup-node@v3
         with:
           node-version: latest
           cache: "pnpm"
+          path: ./scr/packages/react-native-ozow
 
       - run: pnpm install --frozen-lockfile
       - name: Create Release Pull Request or Publish
