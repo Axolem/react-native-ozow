@@ -12,7 +12,7 @@
     "@cryptography/sha512": "^0.2.0",
     "@types/react": "~18.2.34",
     "axios": "^1.6.0",
-    "expo": "~49.0.15",
+    "expo": "~51.0.8",
     "expo-status-bar": "~1.11.0",
     "react": "18.2.0",
     "react-native": "0.73.3",
