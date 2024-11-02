@@ -70,7 +70,10 @@ const Ozow = (props: OzowProps) => {
             }}
             onNavigationStateChange={(error) => {
 
-                const { url } = error;
+                const url = error.url;
+                const parsedUrl = new URL(url);
+
+                if (parsedUrl.host === 'pay.ozow.com') return
 
                 const urlArr = url.split('?');
 
